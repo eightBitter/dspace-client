@@ -18,6 +18,7 @@ module DSpace
         DSpace::Community.new client, post_request(body: attributes, params: { parent: parent }).body
       else
         DSpace::Community.new client, post_request(body: attributes).body
+      end
     end
 
     def retrieve(uuid:)
