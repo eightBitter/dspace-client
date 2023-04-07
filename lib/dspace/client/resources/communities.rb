@@ -13,8 +13,11 @@ module DSpace
       DSpace::List.from_response(client, response, key: "communities", type: DSpace::Community)
     end
 
-    def create(**attributes)
-      DSpace::Community.new client, post_request(body: attributes).body
+    def create(parent:nil, **attributes)
+      if parent
+        DSpace::Community.new client, post_request(body: attributes, params: { parent: parent }).body
+      else
+        DSpace::Community.new client, post_request(body: attributes).body
     end
 
     def retrieve(uuid:)
